@@ -1,39 +1,19 @@
 const container = document.querySelector(".container");
 const slider = document.getElementById("range");
+const clear = document.querySelector(".clear");
+//const eraser = document.querySelector(".eraser");
 
-slider.addEventListener("click", () => {
+function removeColor(){
     while(container.hasChildNodes()){
         container.removeChild(container.lastChild);
     }
-    //container.removeChild(``);
     fullSquare();
-});
-
-function updateTextInput(val) {
-   let value = document.getElementById('range').value = val; 
-   return value;
 }
 
+slider.addEventListener("click", removeColor);
+clear.addEventListener("click", removeColor);
 
-
-function makeContainer(){
-    let val = document.getElementById("range").value;
-    for(let i = 0; i < val; i++){
-        let cont = document.createElement("div");
-        cont.setAttribute("id",`row-container${i}`);
-        container.appendChild(cont);
-    }
-}
-
-/*function clearBlock(){
-    clear.addEventListener("click", () => {
-        square.addEventListener("mouseover", () => {
-            square.style.backgroundColor = "white";
-        })
-    });
-}*/
-
-function makeRow(rowNum){
+function makeRowBlack(rowNum){
     let cont = document.createElement("div");
     let val = document.getElementById("range").value;
     cont.setAttribute("class",`row-container`);
@@ -51,7 +31,7 @@ function makeRow(rowNum){
 const fullSquare = () => {
     let val = document.getElementById("range").value;
     for(let i = 0; i < val; i++){
-        makeRow(i);
+        makeRowBlack(i);
     }
 }
 
