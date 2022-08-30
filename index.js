@@ -2,6 +2,17 @@ const container = document.querySelector(".container");
 const slider = document.getElementById("range");
 const clear = document.querySelector(".clear");
 const eraser = document.querySelector(".eraser");
+const black = document.querySelector(".black");
+const rainbow = document.querySelector(".rainbow");
+
+function randomColor(){
+    let letters = "0123456789ABCDEF";
+    let color = "#";
+    for(let i = 0; i < 6; i++){
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
 function removeColor(){
     while(container.hasChildNodes()){
@@ -26,11 +37,18 @@ function makeRow(rowNum){
         square.style.backgroundColor = "black";
     });
     eraser.addEventListener("click", () => {
-        square.removeEventListener("mouseover", () => {
-            square.style.backgroundColor = "black";
-        });
         square.addEventListener("mouseover", () => {
             square.style.backgroundColor = "white";
+        });
+    });
+    black.addEventListener("click", () => {
+        square.addEventListener("mouseover", () => {
+            square.style.backgroundColor = "black";
+        });
+    });
+    rainbow.addEventListener("click", () => {
+        square.addEventListener("mouseover", () => {
+            square.style.backgroundColor = randomColor();
         });
     });
     }
