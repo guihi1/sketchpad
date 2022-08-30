@@ -1,7 +1,7 @@
 const container = document.querySelector(".container");
 const slider = document.getElementById("range");
 const clear = document.querySelector(".clear");
-//const eraser = document.querySelector(".eraser");
+const eraser = document.querySelector(".eraser");
 
 function removeColor(){
     while(container.hasChildNodes()){
@@ -13,7 +13,7 @@ function removeColor(){
 slider.addEventListener("click", removeColor);
 clear.addEventListener("click", removeColor);
 
-function makeRowBlack(rowNum){
+function makeRow(rowNum){
     let cont = document.createElement("div");
     let val = document.getElementById("range").value;
     cont.setAttribute("class",`row-container`);
@@ -25,13 +25,21 @@ function makeRowBlack(rowNum){
     square.addEventListener("mouseover", () => {
         square.style.backgroundColor = "black";
     });
+    eraser.addEventListener("click", () => {
+        square.removeEventListener("mouseover", () => {
+            square.style.backgroundColor = "black";
+        });
+        square.addEventListener("mouseover", () => {
+            square.style.backgroundColor = "white";
+        });
+    });
     }
 }
 
 const fullSquare = () => {
     let val = document.getElementById("range").value;
     for(let i = 0; i < val; i++){
-        makeRowBlack(i);
+        makeRow(i);
     }
 }
 
